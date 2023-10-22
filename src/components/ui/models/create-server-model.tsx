@@ -10,6 +10,7 @@ import { useEffect, useState } from "react"
 import { FileUpload } from "../fileUpload"
 import axios from 'axios'
 import { useRouter } from "next/navigation"
+import { useModal } from "@/hooks/useModel.store"
 
 const formSchema = z.object({
     Name: z.string().min(1, {
@@ -20,13 +21,12 @@ const formSchema = z.object({
     })
 })
 
- export const IntialModel = () => {
-    const [isMounted, setIsMounted] = useState(false);
+ export const CREATEserverModel = () => {
     const router  = useRouter();
+    const {isOpen, type, onClose} = useModal();
 
-    useEffect(() => {
-        setIsMounted(true)
-    }, [])
+    const isModelOpen = isOpen && type === "createServer"
+
     const form = useForm({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -41,18 +41,20 @@ const formSchema = z.object({
         try {
            await axios.post("/api/servers", valus);
            form.reset();
+           onClose();
            router.refresh();
-           window.location.reload();
         } catch (err) {
             console.log(err)
         }
     }
 
-    if (!isMounted) {
-        return null;
+    const handleClose = () => {
+        form.reset();
+        onClose();
     }
+
     return (
-        <Dialog open>
+        <Dialog open={isModelOpen} onOpenChange={handleClose}>
            <DialogContent className="bg-white text-black p-0 overflow-hidden">
             <DialogHeader className="pt-8 px-6">
               <DialogTitle className="text-2xl m-2 text-center font-bold">Create a Server</DialogTitle>

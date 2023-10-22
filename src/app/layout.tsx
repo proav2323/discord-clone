@@ -4,6 +4,7 @@ import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
 import { ThemeProvider } from '@/components/ui/providers/themeProvider'
 import { cn } from '@/lib/utils'
+import { ModelProvider } from '@/components/ui/providers/modelProvider'
 
 const inter = Roboto({ weight: ["100", "500", "300", "700", "900"], subsets: ['greek']})
 
@@ -28,6 +29,7 @@ export default function RootLayout({
        enableSystem={true}
        storageKey='discord-theme'
       >
+        <ModelProvider />
         {children}
        </ThemeProvider>
       </body>
