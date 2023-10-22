@@ -9,9 +9,9 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip"
 import { Separator } from "@/components/ui/separator"
-import { ScrollArea, ScrollBar } from "../scroll-area";
+import { ScrollArea, ScrollBar } from "../ui/scroll-area";
 import { SidebarItem } from "./SidebarItem";
-import { ThemeToggle } from "../ThemeToggle";
+import { ThemeToggle } from "../ui/ThemeToggle";
 import { UserButton } from "@clerk/nextjs";
 
 

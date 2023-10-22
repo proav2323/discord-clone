@@ -1,13 +1,13 @@
 "use client"
 import { useForm } from "react-hook-form"
-import { Dialog, DialogHeader,  DialogContent, DialogDescription, DialogTitle, DialogFooter } from "../dialog"
+import { Dialog, DialogHeader,  DialogContent, DialogDescription, DialogTitle, DialogFooter } from "../ui/dialog"
 import * as z from 'zod'
 import {zodResolver} from '@hookform/resolvers/zod'
-import { FormControl, Form, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../form"
-import { Input } from "../input"
-import { Button } from "../button"
+import { FormControl, Form, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "../ui/form"
+import { Input } from "../ui/input"
+import { Button } from "../ui/button"
 import { useEffect, useState } from "react"
-import { FileUpload } from "../fileUpload"
+import { FileUpload } from "../ui/fileUpload"
 import axios from 'axios'
 import { useRouter } from "next/navigation"
 import { useModal } from "@/hooks/useModel.store"

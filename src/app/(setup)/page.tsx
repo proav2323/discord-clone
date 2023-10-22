@@ -1,4 +1,4 @@
-import { IntialModel } from "@/components/ui/models/intialsModel";
+import { IntialModel } from "@/components/models/intialsModel";
 import { db } from "@/lib/db/utils";
 import { intialProfile } from "@/lib/intial-profile";
 import {redirect} from 'next/navigation'

@@ -2,9 +2,9 @@ import type { Metadata } from 'next'
 import { Roboto, Open_Sans } from 'next/font/google'
 import './globals.css'
 import { ClerkProvider } from '@clerk/nextjs'
-import { ThemeProvider } from '@/components/ui/providers/themeProvider'
+import { ThemeProvider } from '@/components/providers/themeProvider'
 import { cn } from '@/lib/utils'
-import { ModelProvider } from '@/components/ui/providers/modelProvider'
+import { ModelProvider } from '@/components/providers/modelProvider'
 
 const inter = Roboto({ weight: ["100", "500", "300", "700", "900"], subsets: ['greek']})
 

@@ -1,6 +1,6 @@
 "use client"
 import { Plus } from "lucide-react"
-import { ActionTooltip } from "../actionTooltip"
+import { ActionTooltip } from "../ui/actionTooltip"
 import { useModal } from "@/hooks/useModel.store"
 
 export const SidebarAction = () => {
