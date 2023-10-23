@@ -5,7 +5,8 @@ export type modelType =
   | "createServer"
   | "editServer"
   | "createChannel"
-  | "invite";
+  | "invite"
+  | "members";
 
 interface modelStore {
   type: modelType | null;
