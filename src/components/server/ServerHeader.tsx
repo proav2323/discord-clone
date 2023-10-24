@@ -33,7 +33,7 @@ export const ServerHeader = ({server, role}: {server: ServerWithMembersWithProfi
             </DropdownMenuItem>
          )}
         {isModerator && (
-            <DropdownMenuItem className="cursor-pointer px-3 py-2 text-sm">
+            <DropdownMenuItem onClick={() => onOpen("createChannel")} className="cursor-pointer px-3 py-2 text-sm">
                Create channel <PlusCircle className="h-4 w-4 ml-auto" />
             </DropdownMenuItem>
          )}
@@ -41,12 +41,12 @@ export const ServerHeader = ({server, role}: {server: ServerWithMembersWithProfi
             <DropdownMenuSeparator />
          )}
         {isAdmin && (
-            <DropdownMenuItem className="cursor-pointer px-3 py-2 text-sm text-rose-500">
+            <DropdownMenuItem onClick={() => onOpen("delete Server", {server: server})} className="cursor-pointer px-3 py-2 text-sm text-rose-500">
                Delete Server <Trash className="h-4 w-4 ml-auto" />
             </DropdownMenuItem>
          )}
         {!isAdmin && (
-            <DropdownMenuItem className="cursor-pointer px-3 py-2 text-sm text-rose-500">
+            <DropdownMenuItem onClick={() => onOpen("Leave Server", {server: server})} className="cursor-pointer px-3 py-2 text-sm text-rose-500">
                Leave Server <LogOut className="h-4 w-4 ml-auto" />
             </DropdownMenuItem>
          )}
