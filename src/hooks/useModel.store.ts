@@ -1,4 +1,4 @@
-import { Server } from "@prisma/client";
+import { Channel, Server, channelType } from "@prisma/client";
 import { create } from "zustand";
 
 export type modelType =
@@ -8,7 +8,9 @@ export type modelType =
   | "invite"
   | "members"
   | "Leave Server"
-  | "delete Server";
+  | "delete Server"
+  | "delete channel"
+  | "edit channel";
 
 interface modelStore {
   type: modelType | null;
@@ -20,6 +22,8 @@ interface modelStore {
 
 interface modelData {
   server?: Server;
+  ChannelType?: channelType;
+  channel?: Channel;
 }
 
 export const useModal = create<modelStore>((set) => ({
