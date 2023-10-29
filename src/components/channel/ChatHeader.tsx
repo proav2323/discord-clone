@@ -2,6 +2,7 @@ import { Channel } from "@prisma/client"
 import { Hash, Menu } from "lucide-react"
 import MobileToggle from "../mobileToggle"
 import UserAvatar from "../ui/userAvatar"
+import { SocketIndicator } from "../ui/socketIndicator"
 
 export default function ChatHeader({serverId, name, type, imgUrl}: {serverId: string, name: string, type: "conversations" | "channel", imgUrl?: string}) {
   return (
@@ -14,6 +15,9 @@ export default function ChatHeader({serverId, name, type, imgUrl}: {serverId: st
           <UserAvatar src={imgUrl} classname="h-8 w-8 md:h-8 md:w-8 mr-2" name={name} />
         )}
         <p className="font-semibold text-md text-black dark:text-white">{name}</p>
+        <div className="ml-auto flex items-center">
+          <SocketIndicator />
+        </div>
     </div>
   )
 }

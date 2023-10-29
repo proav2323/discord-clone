@@ -10,7 +10,8 @@ export type modelType =
   | "Leave Server"
   | "delete Server"
   | "delete channel"
-  | "edit channel";
+  | "edit channel"
+  | "message attach";
 
 interface modelStore {
   type: modelType | null;
@@ -24,6 +25,8 @@ interface modelData {
   server?: Server;
   ChannelType?: channelType;
   channel?: Channel;
+  apiUrl?: string;
+  query?: Record<string, any>;
 }
 
 export const useModal = create<modelStore>((set) => ({
