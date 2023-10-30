@@ -6,6 +6,7 @@ import { ThemeProvider } from '@/components/providers/themeProvider'
 import { cn } from '@/lib/utils'
 import { ModelProvider } from '@/components/providers/modelProvider'
 import { SocketProvider } from '@/components/providers/socket-provider'
+import { QueryPorvider } from '@/components/providers/query-provider'
 
 const inter = Roboto({ weight: ["100", "500", "300", "700", "900"], subsets: ['greek']})
 
@@ -32,7 +33,9 @@ export default function RootLayout({
       >
         <SocketProvider>
         <ModelProvider />
+         <QueryPorvider>
         {children}
+         </QueryPorvider>
         </SocketProvider>
        </ThemeProvider>
       </body>
