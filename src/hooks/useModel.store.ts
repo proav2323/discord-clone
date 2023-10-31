@@ -11,7 +11,8 @@ export type modelType =
   | "delete Server"
   | "delete channel"
   | "edit channel"
-  | "message attach";
+  | "message attach"
+  | "delete message";
 
 interface modelStore {
   type: modelType | null;

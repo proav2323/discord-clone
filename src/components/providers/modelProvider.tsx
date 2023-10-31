@@ -11,6 +11,7 @@ import { DeleteServerModel } from "../models/DeleteServer";
 import { DeleteChannelModel } from "../models/deleteChannel";
 import { EditChannelModel } from "../models/editChannel";
 import { MessageAttch } from "../models/messageAttch";
+import { DeleteMessageModel } from "../models/deletMessage";
 
 export const ModelProvider = () => {
     const [isMounted, setIsMounted] = useState(false);
@@ -33,6 +34,7 @@ export const ModelProvider = () => {
         <DeleteChannelModel />
         <EditChannelModel />
         <MessageAttch />
+        <DeleteMessageModel />
         </>
     )
 }

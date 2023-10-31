@@ -6,6 +6,7 @@ import { ActionTooltip } from '../ui/actionTooltip'
 import { Edit, FileIcon, ShieldAlert, ShieldCheck, Trash } from 'lucide-react'
 import Image from 'next/image'
 import { cn } from '@/lib/utils'
+import {useRouter, useParams} from 'next/navigation'
 import {
   Form,
   FormControl,
@@ -22,6 +23,7 @@ import qs from 'query-string'
 import {useForm} from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button } from '../ui/button'
+import { useModal } from '@/hooks/useModel.store'
 
 const rollIconMap = {
   [membolRole.GUEST]: null,
@@ -33,9 +35,22 @@ const formSchema = z.object({
   content: z.string().min(1)
 })
 
+
+
 export default function ChatItem({id, content, member, timestamp, fileUrl, deleted, currentMember, isUpdated, socketUrl, socketQuery}: {id: string, content: string, member: Member& {
     profile: Profile
 }, timestamp: string, fileUrl: string | null, deleted: boolean, currentMember: Member, isUpdated: boolean, socketUrl: string, socketQuery: Record<string, string>}) {
+  const router = useRouter();
+  const params = useParams();
+
+  const redirectToMember = () => {
+  if (member.id === currentMember.id) {
+       return;
+  }
+  router.push(`/servers/${params?.serverId}/conversations/${member.id}`)
+  
+}
+
   const fileType = fileUrl?.split(".").pop();
   const icon = rollIconMap[member.role]
   const isAdmin = membolRole.ADMIN === currentMember.role;
@@ -46,8 +61,7 @@ export default function ChatItem({id, content, member, timestamp, fileUrl, delet
   const isPDF = fileType === "pdf" && fileUrl
   const isImage = !isPDF && fileUrl
   const [isEdit, setIsEditing] = useState(false);
-  const [isDeleting, setIsDeleteing] = useState(false)
-
+  const {onOpen} = useModal();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {content: content},
@@ -88,13 +102,13 @@ return () => window.removeEventListener("keydown", handelKeyDown)
   return (
     <div className='relative group flex items-center hover:bg-black/5 transition p-4 w-full'>
       <div className='group flex gap-x-2 items-start w-full'>
-         <div className='cursor-pointer hover:drop-shadow-md transition'>
+         <div className='cursor-pointer hover:drop-shadow-md transition' onClick={redirectToMember}>
             <UserAvatar src={member.profile.imgUrl} name={member.profile.name} />
          </div>
          <div className='flex flex-col w-full'>
             <div className='flex items-center gap-x-2'>
                <div className='flex items-center'>
-                   <p className='font-semibold text-sm cursor-pointer hover:underline'>{member.profile.name}</p>
+                   <p onClick={redirectToMember} className='font-semibold text-sm cursor-pointer hover:underline'>{member.profile.name}</p>
                    <ActionTooltip label={member.role}>
                          {icon}
                    </ActionTooltip>
@@ -148,7 +162,7 @@ return () => window.removeEventListener("keydown", handelKeyDown)
             </ActionTooltip>
           )}
           <ActionTooltip label="delete">
-             <Trash className='cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition' />
+             <Trash onClick={() => onOpen("delete message", {query: socketQuery, apiUrl: `${socketUrl}/${id}` })} className='cursor-pointer ml-auto w-4 h-4 text-zinc-500 hover:text-zinc-600 dark:hover:text-zinc-300 transition' />
             </ActionTooltip>
         </div>
       )}

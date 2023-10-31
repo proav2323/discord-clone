@@ -34,12 +34,10 @@ export default async function channelIdPage({params} : {params: {serverId: strin
   return (
    <div className="bg-white dark:bg-[#313338] flex flex-col h-full">
      <ChatHeader serverId={channel.serverId} name={channel.name} type="channel" />
-     <div className="flex flex-1">
       <ChatMessages member={member} name={channel.name} type="channel" apiUrl="/api/messages" socketUrl="/api/socket/messages" socketQuery={{
         channelId: channel.id,
         serverId: channel.serverId,
       }} paramsKey="channelId" paramValue={channel.id} chatId={channel.id} />
-     </div>
      <ChatInput apiUrl={"/api/socket/messages"} type="channel" name={channel.name} query={{
       channelId: channel.id,
       serverId: channel.serverId
