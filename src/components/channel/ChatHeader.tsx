@@ -3,6 +3,7 @@ import { Hash, Menu } from "lucide-react"
 import MobileToggle from "../mobileToggle"
 import UserAvatar from "../ui/userAvatar"
 import { SocketIndicator } from "../ui/socketIndicator"
+import { ChatVideoButton } from "./chatVideoButton"
 
 export default function ChatHeader({serverId, name, type, imgUrl}: {serverId: string, name: string, type: "conversations" | "channel", imgUrl?: string}) {
   return (
@@ -16,6 +17,9 @@ export default function ChatHeader({serverId, name, type, imgUrl}: {serverId: st
         )}
         <p className="font-semibold text-md text-black dark:text-white">{name}</p>
         <div className="ml-auto flex items-center">
+          {type === "conversations" && (
+            <ChatVideoButton />
+          )}
           <SocketIndicator />
         </div>
     </div>
